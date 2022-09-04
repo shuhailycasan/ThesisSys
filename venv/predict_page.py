@@ -3,7 +3,8 @@ import streamlit as st
 from visual_page import show_visual
 
 def show_predict():
-    st.title("DWCL Recommendation System for Incomming College Students")
+    st.title("DWCL Recommendation System")
+    st.subheader("for Incomming College Students")
     st.caption("By: Shuhaily Casan and Nicky Palero")
 
     #Select courses
@@ -28,7 +29,7 @@ def show_predict():
 
     elif department == "SEAS":
         st.write("School of Education, Arts and Science(SEAS)")
-        course = {"Bachelor of Science in Pysychology",
+        course = {"Bachelor of Science in Psychology",
                        "Bachelor of Physical Education",
                        "Bachelor of Special Needs Education",
                        "Bachelor in Human Needs",
@@ -44,8 +45,10 @@ def show_predict():
 
 
     #Course Assesment Rating Scale
+    st.markdown("""### **Course Assessment**""")
     st.write("**Please Rate how interest are you in in this courses**")
-    q1 =st.slider("1. Bachelor of Science in Computer Science", 0,10,2)
+
+    q1 =st.slider("1. Bachelor of Science in Computer Science", 0,5,2)
     st.markdown("""
             The **Bachelor of Computer Science or Bachelor of Science in Computer Science** is a type of bachelor's degree awarded after collegiate study in computer science. In general, computer science degree programs emphasize the mathematical and theoretical foundations of computing.
             > If you have any skills like this then this is for you
@@ -59,7 +62,7 @@ def show_predict():
             - Machine Learning Engineer
             - Data Scientist
                 """)
-    q2 =st.slider("2. Bachelor of Science in Information Technology", 0, 10, 2)
+    q2 =st.slider("2. Bachelor of Science in Information Technology", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Science in Information Technology (BSIT)** program is a four-year degree program which focuses on the study of computer utilization and computer software to plan, install, customize, operate, manage, administer and maintain information technology infrastructure.                
             > If you have any skills like this then this is for you:
@@ -76,7 +79,7 @@ def show_predict():
             - Information security analyst
             and so much more :tada:
                     """)
-    q3 =st.slider("3. Bachelor of Science in Civil Engineer", 0, 10, 2)
+    q3 =st.slider("3. Bachelor of Science in Civil Engineer", 0, 5, 2)
     st.markdown("""
             A **Bachelor of Science in Civil Engineering (BSCE)** is intended to provide graduates with the skills and knowledge needed to design, build, and operate engineered systems such as roads, foundations, buildings, bridges, dams, airports, and water supply and wastewater treatment systems.                    
             > If you have any skills like this then this is for you:
@@ -93,7 +96,7 @@ def show_predict():
             - Building COntrol Surveyor
             and so much more :tada:
                         """)
-    q4 = st.slider("4. Bachelor of Science in Hospital Management", 0, 10, 2)
+    q4 = st.slider("4. Bachelor of Science in Hospital Management", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Science in Hospitality Management (BSHM)** is a degree program that delivers education to people who are interested to build a career in the leisure industry involving the planning, development, implementation and control of culinary and accommodation/billeting operations.                        
             > If you have any skills like this then this is for you:
@@ -110,7 +113,7 @@ def show_predict():
             - Conference centre manager
             and so much more :tada:
             """)
-    q5 = st.slider("5. Bachelor of Science in Nursing", 0, 10, 2)
+    q5 = st.slider("5. Bachelor of Science in Nursing", 0, 5, 2)
     st.markdown("""
             The Bachelor of Science in Nursing (BSN) is a four-year degree program that teaches students the necessary skills and knowledge for health care. It revolves around four main components; health promotion, disease prevention, risk reduction, and health restoration. The program aims to develop nursing students who are capable of providing holistic care to individuals of different ages, gender, and health statuses. 
             > If you have any skills like this then this is for you:
@@ -129,7 +132,7 @@ def show_predict():
             -Industrial Nurse.
             and so much more :tada:
              """)
-    q6 = st.slider("6. Bachelor of Science in Electrical Engineering", 0, 10, 2)
+    q6 = st.slider("6. Bachelor of Science in Electrical Engineering", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Science in Electrical Engineering** is a five-year degree program that focuses on conceptualizing, developing, and designing a safe, economical, and ethical utilization of electrical energy. The program also trains students to effectively develop and test real-life applications of electrical circuitry, digital systems, electrical equipment, and machinery control.           
             > If you have any skills like this then this is for you:
@@ -146,7 +149,7 @@ def show_predict():
             - Electrical engineer
             and so much more :tada:
              """)
-    q7 = st.slider("7. How well is your cooking skill?", 0, 10, 2)
+    q7 = st.slider("7. Bachelor of Library and Information Science", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Library and Information Science (BLIS)** is a four-year program that prepares students in the development, deployment, and management of information resources in print, non-print, electronic, and digital formats.            
             > If you have any skills like this then this is for you:
@@ -163,7 +166,7 @@ def show_predict():
             - Abstractor.
             and so much more :tada:
              """)
-    q8 = st.slider("8. Bachelor of Science in Business Management", 0, 10, 2)
+    q8 = st.slider("8. Bachelor of Science in Business Management", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Science in Business Administration** is a four-year program that focuses on managing businesses and their overall operations. The program involves critical decision-making skills in order to successfully strategize business operations.            
             > If you have any skills like this then this is for you:
@@ -181,7 +184,7 @@ def show_predict():
             - Meeting, Convention and Event Planner
             and so much more :tada:
              """)
-    q9 = st.slider("9. Bachelor of Science in Psychology", 0, 10, 2)
+    q9 = st.slider("9. Bachelor of Science in Psychology", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Science in Business Administration** is a four-year program that focuses on managing businesses and their overall operations. The program involves critical decision-making skills in order to successfully strategize business operations.            
             > If you have any skills like this then this is for you:
@@ -199,7 +202,7 @@ def show_predict():
             - Education mental health practitionerr
             and so much more :tada:
              """)
-    q10 = st.slider("10. Bachelor of Science in Management Accounting", 0, 10, 2)
+    q10 = st.slider("10. Bachelor of Science in Management Accounting", 0, 5, 2)
     st.markdown("""
             The **Bachelor of Science in Management Accounting** is a four-year degree program that provides students with knowledge and skills in management. It includes discussions on the systems, procedures, and policies relevant to company management and decisions. The program also aims to produce globally competitive students who are capable of applying both accounting and management techniques.            
             > If you have any skills like this then this is for you:
@@ -218,24 +221,136 @@ def show_predict():
             - Treasurer
             and so much more :tada:
              """)
-    q11 = st.slider("11. Bachelor of Science in Elementary Education", 0, 10, 2)
+    q11 = st.slider("11. Bachelor of Science in Elementary Education", 0, 5, 2)
     st.markdown("""
-            The Bachelor of Elementary Education (BEED) is a four-year undergraduate degree program designed to prepare students to become elementary school teachers. The BEED degree program aims to develop highly motivated and competent teachers specializing in the content and pedagogy for elementary education.                
+            The **Bachelor of Elementary Education (BEED)** is a four-year undergraduate degree program designed to prepare students to become elementary school teachers. The BEED degree program aims to develop highly motivated and competent teachers specializing in the content and pedagogy for elementary education.                
             > If you have any skills like this then this is for you:
             - Patience
             - Time management
             - Leadership
             - Communication
-            - Organization
+            - Organize person
             - Self management skills
             - Independent work Skills
             > If you are also interest in this field:
-            - Manager/Director – Data Analytics
-            - Accounting Manager
+            - Teacher
+            - Curriculum Developer
+            - Researcher
+            - Academic Advisor
+            - School Administrator
+            - College Professor
+            and so much more :tada:
+             """)
+    q12 = st.slider("12. Bachelor of Science in Internal Auditing", 0, 5, 2)
+    st.markdown("""
+            The **Bachelor of Science in Internal Auditing (BSIA)** is a four year degree program that provides general accounting education to students wanting to pursue a professional career in Internal Auditing. BSIA hones professionals who can enhance and protect organizational value by providing stake holders with risk-based, objective and reliable assurance, advise and insight                
+            > If you have any skills like this then this is for you:
+            - Management Skills
+            - Problem Solver
+            - Leadership
+            - Risk Management Skills
+            - Organization
+            - Self management skills
+            > If you are also interest in this field:
+            - Auditing specialists
+            - Risk assessment specialists
+            - Financial analysts
+            - Lead internal auditors
+            - Information systems auditors
+            - Internal controls auditors
+            and so much more :tada:
+             """)
+    q13 = st.slider("13. Bachelor of Science in Accounting", 0, 5, 2)
+    st.markdown("""
+            A **Bachelor of Science (BS) in Accounting** is four-year degree that requires more courses related to the accounting major to prepare students for entry-level positions in corporate, nonprofit, or government accounting.            
+            > If you have any skills like this then this is for you:
+            - Time Management Skills
+            - Critical Thinking Skills
+            - Analytical
+            - Communication Skills
+            - Emotional Intelligence
+            - Professionalism
+            > If you are also interest in this field:
             - Staff Accountant
-            - Financial Analyst
-            - Vice President – Financial Planning & Analysis (FP&A)
-            - Treasurer
+            - Loan Officer.
+            - Financial analysts
+            - Management Accountant
+            - Information systems auditors
+            - Financial Analyst.
+            and so much more :tada:
+             """)
+    q14 = st.slider("14. Bachelor of Physical Education", 0, 5, 2)
+    st.markdown("""
+            The **Bachelor of Physical Education** is a four-year degree program in the Philippines that will train you in developing and maintaining the optimal physical fitness and functionality individuals                
+            > If you have any skills like this then this is for you:
+            - Athletic Ability
+            - Presentation Skills
+            - Problem Solving
+            - Critical Thinking
+            - Communication Skills
+            - Calm and Empath
+            - Initiative
+            > If you are also interest in this field:
+            - Adaptive Physical Education Specialist
+            - Athletic Director
+            - Aerobics Instructo
+            - Adventure/Outdoor Educator
+            - Fitness and Recreation Manager / Consultant
+            - Fitness, and Wellness Facilities Manager
+            and so much more :tada:
+             """)
+    q15 = st.slider("15. Bachelor of Secondary Education", 0, 5, 2)
+    st.markdown("""
+            The **Bachelor of Secondary Education** (BSED) is a four year degree program designed to prepare students for becoming high school teachers. The program combines both theory and practice in order to teach students the necessary knowledge and skills a high school teacher needs. The program aims to produce competent teachers who provide a conducive learning experience to their students.                 
+            > If you have any skills like this then this is for you:
+            - Study Skills
+            - Collaboration skills
+            - Communication skills
+            - Critical Thinking
+            - Communication Skills
+            - Presentation Skills
+            - Leadership Skills
+            > If you are also interest in this field:
+            - Teaching assistant
+            - Subject teacher
+            - English as a Second Language (ESL) Teacher.
+            - High school teacher
+            - Education administrator
+            and so much more :tada:
+             """)
+    q16 = st.slider("16. Bachelor of Special Needs Education", 0, 5, 2)
+    st.markdown("""
+            The **Bachelor of Special Needs Education (BSNEd)** is a four-year undergraduate program of the 2018 curriculum which aims to prepare aspiring teachers in the field of special needs education. Specifically, the program aims to develop highly competent special education (SPED) teacher-researchers who specialize in providing and managing instruction to students with additional needs in an inclusive and / or segregated setting.            > If you have any skills like this then this is for you:
+            - Patience
+            - Organize
+            - Creativity
+            - Intuitive and Calming Nature
+            - Communication Skills
+            - Presentation Skills
+            > If you are also interest in this field:
+            - Special Education Teacher (Secondary School)
+            - Educational Specialist
+            - Special Education Paraprofessional
+            - Special Education Teacher (Preschool, Kindergarten, or Elementary School)
+            and so much more :tada:
+             """)
+    q17 = st.slider("16. Bachelor of Human Services", 0, 5, 2)
+    st.markdown("""
+            The **Bachelor of Special Needs Education (BSNEd)** is a four-year undergraduate program of the 2018 curriculum which aims to prepare aspiring teachers in the field of special needs education. Specifically, the program aims to develop highly competent special education (SPED) teacher-researchers who specialize in providing and managing instruction to students with additional needs in an inclusive and / or segregated setting.            > If you have any skills like this then this is for you:
+            - Empathy
+            - Active listening
+            - Organization skills
+            - Patience
+            - Communication Skills
+            - Cultural competence
+            - Critical Thinking
+            > If you are also interest in this field:
+            - Community health worker.
+            - Case manager
+            - Behavioral therapist
+            - Probation officer
+            - Child adoption specialist
+            - Substance abuse counselor
             and so much more :tada:
              """)
 

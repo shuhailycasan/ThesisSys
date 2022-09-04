@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from PIL import Image
 from predict_page import show_predict
 from visual_page import show_visual
 
@@ -42,11 +43,17 @@ def edit_username_data(username,password,department,course,update_user,update_pa
     data = c.fetchall()
     return data
 
+
+
 menu=["Home","Login","Sign up"]
 choice =st.sidebar.selectbox("Menu", menu)
 if choice == "Home":
     st.title("Welcome to our Recommendation System")
     st.write("Please signup first")
+
+    image = Image.open('logodwcl.jpg')
+    new_image = image.resize((600, 600))
+    st.image(new_image)
 
 elif choice == "Login":
         st.subheader("Log in section")
