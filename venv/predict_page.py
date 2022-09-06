@@ -1,5 +1,6 @@
 import numpy as np
 import streamlit as st
+from PIL import Image
 from visual_page import show_visual
 
 def show_predict():
@@ -45,13 +46,21 @@ def show_predict():
 
 
     #Course Assesment Rating Scale
+    st.write("")
+    st.write("")
+    st.write("")
     st.markdown("""### **Course Assessment**""")
-    st.write("**Please Rate how interest are you in in this courses**")
-
-    q1 =st.slider("1. Bachelor of Science in Computer Science", 0,5,2)
+    st.write("**Please rate how interested are you in in this 17 courses by reading the Assessments**")
+    image = Image.open('likertScale.PNG')
+    new_image = image.resize((670, 80))
+    st.image(new_image)
+    st.write("")
+    st.write("")
+    st.write("**1. Bachelor of Science in Computer Science**")
+    q1 =st.slider("",0,5,2)
     st.markdown("""
             The **Bachelor of Computer Science or Bachelor of Science in Computer Science** is a type of bachelor's degree awarded after collegiate study in computer science. In general, computer science degree programs emphasize the mathematical and theoretical foundations of computing.
-            > If you have any skills like this then this is for you
+            > If you have any skills like this then this is for you,
             - Theoritical
             - Mathematics
             - Computer and Technological Skills

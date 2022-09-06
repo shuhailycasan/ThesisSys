@@ -56,7 +56,6 @@ if choice == "Home":
     st.image(new_image)
 
 elif choice == "Login":
-        st.subheader("Log in section")
         username = st.sidebar.text_input("Username ")
         password = st.sidebar.text_input("Password ",type='password')
 
