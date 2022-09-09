@@ -52,7 +52,7 @@ if choice == "Home":
     st.write("Please signup first")
 
     image = Image.open('logodwcl.jpg')
-    new_image = image.resize((600, 600))
+    new_image = image.resize((500, 500))
     st.image(new_image)
 
 elif choice == "Login":
