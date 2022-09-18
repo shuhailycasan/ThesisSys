@@ -440,4 +440,4 @@ def show_predict():
 
         st.header("Course Assessment Results")
         st.write("**The three DWCL courses that are most suitable for you**")
-        st.dataframe(similar.sum().sort_values(ascending=False).head(3),600,200)
+        st.write(similar.sum().sort_values(ascending=False).head(3),600,200)

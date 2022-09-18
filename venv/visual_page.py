@@ -19,17 +19,14 @@ def show_visual():
     data1 = data1.set_index("Courses")
     st.bar_chart(data1)
 
-    # Pie Chart
-    st.subheader("Are you confident in Finishing your degree?")
-    labels = 'Yes', 'No'
-    sizes = [76.9, 23.1]
-    explode = (0, 0.1)
 
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-            shadow=True, startangle=90)
-    ax1.axis('equal')
-    st.pyplot(fig1)
+    # Pie Chart
+    st.subheader("Percentage of Students if they are confindent in finishing their degree")
+    data1 = {"Yes or No": ["Yes", "No"],
+             "Percentage": [76.9, 23.1 ]}
+    data1 = pd.DataFrame(data1)
+    data1 = data1.set_index("Yes or No")
+    st.bar_chart(data1)
 
 
     #Pie Chart
