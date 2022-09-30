@@ -129,46 +129,38 @@ elif choice == "Sign up":
     new_user =st.text_input("Username")
     new_pass =st.text_input("Password",type= 'password')
 
-    department = {"SOECS", "SBMA", "SEAS", "SHOM","None"}
+    department = {"ABM", "STEM", "HUMSS", "TVL","GAS"}
 
     department = st.selectbox("Select your department", department)
 
-    if department == "SOECS":
-        st.write("School of Engineering and Computer Studies(SOECS)")
-        course = {"Bachelor of in Information Technology",
-                        "Bachelor of in Computer Science",
-                        "Bachelor of in Civil Engineering",
-                        "Bachelor of in Civil Engineering",
-                        "Bachelor of Library and Information Science"}
-        course = st.selectbox("SOECS COURSES", course)
+    if department == "ABM":
+        st.write("Accountancy, Business and Management")
+        course = {"ABM"}
+        course = st.selectbox("SHS STRAND", course)
 
-    elif department == "SBMA":
-        st.write("School of Business, Management, and Accountancy(SBMA)")
-        course = {"Bachelor of Science in Accountancy",
-                       "bachelor of Science in Management Accounting",
-                       "Bachelor of Science in internal Auditing",
-                       "Bachelor of Science in Business Administration"}
-        course = st.selectbox("SBMA COURSES", course)
+    elif department == "GAS":
+        st.write("General Academic Strand")
+        course = {"GAS"}
+        course = st.selectbox("SHS STRAND", course)
 
-    elif department == "SEAS":
-        st.write("School of Education, Arts and Science(SEAS)")
-        course = {"Bachelor of Science in Pysychology",
-                       "bachelor of Physical Education",
-                       "Bachelor of Special Needs Education",
-                       "Bachelor in Human Needs",
-                       "Bachelor of Elementary Education",
-                       "Bachelor of Secondary Education"}
-        course = st.selectbox("SEAS COURSES", course)
+    elif department == "HUMSS":
+        st.write("Humanities and Social Sciences")
+        course = {"HUMSS"}
+        course = st.selectbox("SHS STRAND", course)
 
-    elif department == "SHOM":
-        st.write("School of Hospitality Management(SHOM) and School of Nursing(SON)")
-        course = {"Bachelor of Science in Hospital Management",
-                          "Bachelor of Science in Nursing"}
-        course = st.selectbox("SHOM COURSES", course)
+    elif department == "STEM":
+        st.write("Science, Technology, Engineering")
+        course = {"STEM for Mathematics and Engineering", "STEM for Health and Sciences"}
+        course = st.selectbox("SHS STRAND", course)
+    elif department == "TVL":
+        st.write("Technical - Vocational - Livelihood Track")
+        course = {"Cookery",
+                  "Bread and Pastry Production (NCII)",
+                  "Food and Beverage Services (NCII)",
+                  "Computer Systems Servicing"}
+        course = st.selectbox("SHS STRAND", course)
     else:
         course = st.write("N/A")
-
-    #Hello World
 
     if st.button('Sign up'):
         create_usertable()

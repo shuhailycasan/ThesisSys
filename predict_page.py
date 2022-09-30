@@ -1,6 +1,7 @@
 import numpy as np
 import streamlit as st
 import pandas as pd
+import time
 from PIL import Image
 from visual_page import show_visual
 
@@ -438,6 +439,9 @@ def show_predict():
 
              similar.head(10)
 
+        with st.spinner('Wait for it...'):
+            time.sleep(3)
+        st.success('Done!')
         st.header("Course Assessment Results")
         st.write("**The three DWCL courses that are most suitable for you**")
         st.write(similar.sum().sort_values(ascending=False).head(3))
