@@ -168,6 +168,8 @@ elif choice == "Sign up":
     else:
         course = st.write("N/A")
 
+    #Hello World
+
     if st.button('Sign up'):
         create_usertable()
         add_userdata(new_user,new_pass,department,course)
