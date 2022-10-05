@@ -1,10 +1,12 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def show_visual():
     st.title("Visualization of the Study")
     #barchart
+    #--------------COLLEGE STUDENTS DATA VISUALIZATION------
     st.header("College Sophomore")
     st.subheader("Numbers of Students who participated in our Studies")
     data1 = {"Courses":["Bachelor of Science in Civil Engineering",
@@ -93,6 +95,15 @@ def show_visual():
     ax1.axis('equal')
 
     st.pyplot(fig1)
+    #--------------SENIOR HIGH STUDENTS DATA VISUALIZATION-----------
+        ##HERE
+
+    #------CORRELATION MATRIX OF SENIOR HIGH AND COLLEGE STUDENTS--------
+    st.subheader("The Correlation Matrix of Senior High and College Students")
+    con = pd.read_csv('cor3.csv')
+    fig, ax = plt.subplots()
+    sns.heatmap(con.corr(method='pearson'),annot=True, ax=ax)
+    st.write(fig)
 
 
 

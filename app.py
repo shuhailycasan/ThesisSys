@@ -43,8 +43,6 @@ def edit_username_data(username,password,department,course,update_user,update_pa
     data = c.fetchall()
     return data
 
-
-
 menu=["Home","Login","Sign up"]
 choice =st.sidebar.selectbox("Menu", menu)
 if choice == "Home":
@@ -131,7 +129,7 @@ elif choice == "Sign up":
 
     department = {"ABM", "STEM", "HUMSS", "TVL","GAS"}
 
-    department = st.selectbox("Select your department", department)
+    department = st.selectbox("Select your SHS Strand", department)
 
     if department == "ABM":
         st.write("Accountancy, Business and Management")
