@@ -95,6 +95,7 @@ def show_visual():
     ax1.axis('equal')
 
     st.pyplot(fig1)
+<<<<<<< HEAD
     #--------------SENIOR HIGH STUDENTS DATA VISUALIZATION-----------
         ##HERE
 
@@ -104,6 +105,9 @@ def show_visual():
     fig, ax = plt.subplots()
     sns.heatmap(con.corr(method='pearson'),annot=True, ax=ax)
     st.write(fig)
+=======
+    ##hello world
+>>>>>>> origin/master
 
 
 
