@@ -1,13 +1,14 @@
 import streamlit as st
 import pandas as pd
 from PIL import Image
+import plotly.express as px
 from predict_page import show_predict
 from visual_page import show_visual
 
 
 ## DATABASE CONNECTION
 import sqlite3
-conn = sqlite3.connect('data1.db')
+conn = sqlite3.connect('data2.db')
 c = conn.cursor()
 
 def create_usertable():
@@ -63,9 +64,9 @@ elif choice == "Login":
 
             if result:
                 st.success("Logged in as {}".format(username))
-                page = st.selectbox("Choose functions", ("Predict", "Explore","Users"))
+                page = st.selectbox("Choose functions", ("Recommend", "Explore","Users"))
 
-                if page == "Predict":
+                if page == "Recommend":
                     show_predict()
 
                 elif page == "Explore":
@@ -73,19 +74,51 @@ elif choice == "Login":
 
                 elif page == "Users":
 
-                    if username == "admin" and password == "123":
+                    if username == "admin" and password == "1234567":
                         st.subheader("View All User")
                         user_result = view_all_users()
-                        clean_db = pd.DataFrame(user_result,columns=["Username","Password","Department","Course"])
-                        st.dataframe(clean_db)
+                        clean_db = pd.DataFrame(user_result, columns=["Username", "Password", "Department", "Course"])
+                        with st.expander("View All Data"):
+                            st.dataframe(clean_db)
+
                         menu = ["Add","Edit"]
                         choice = st.selectbox("Add and Edit users", menu)
 
                         if choice == "Add":
                             add_user = st.text_input("Username")
                             add_pass = st.text_input("Password", type='password')
-                            add_department = st.text_input("Department")
-                            add_course =st.text_input("Course")
+                            add_department = {"ABM", "STEM", "HUMSS", "TVL", "GAS","N/A"}
+                            add_department = st.selectbox("Select your SHS Strand", add_department)
+
+                            if add_department == "ABM":
+                                st.write("Accountancy, Business and Management")
+                                add_course = {"ABM"}
+                                add_course = st.selectbox("SHS STRAND", add_course)
+
+                            elif add_department == "GAS":
+                                st.write("General Academic Strand")
+                                add_course = {"GAS"}
+                                add_course = st.selectbox("SHS STRAND", add_course)
+
+                            elif add_department == "HUMSS":
+                                st.write("Humanities and Social Sciences")
+                                add_course = {"HUMSS"}
+                                add_course = st.selectbox("SHS STRAND", add_course)
+
+                            elif add_department == "STEM":
+                                st.write("Science, Technology, Engineering")
+                                add_course = {"STEM for Mathematics and Engineering", "STEM for Health and Sciences"}
+                                add_course = st.selectbox("SHS STRAND", add_course)
+                            elif add_department == "TVL":
+                                st.write("Technical - Vocational - Livelihood Track")
+                                add_course = {"Cookery",
+                                          "Bread and Pastry Production (NCII)",
+                                          "Food and Beverage Services (NCII)",
+                                          "Computer Systems Servicing"}
+                                add_course = st.selectbox("SHS STRAND", add_course)
+                            else:
+                                add_course = st.write("N/A")
+
                             if st.button("Add User"):
                                 create_usertable()
                                 add_userdata(add_user, add_pass, add_department, add_course)
@@ -113,9 +146,19 @@ elif choice == "Login":
                                     st.success("You have successfully Updated:: {} TO ::{}".format(username,update_user))
 
                         updated_result = view_all_users()
+
                         clean_db2 = pd.DataFrame(updated_result, columns=["Username", "Password", "Department", "Course"])
-                        st.subheader("UPDATED DATA")
-                        st.dataframe(clean_db2)
+                        with st.expander("View Updated Data"):
+                            st.subheader("UPDATED DATA")
+                            st.dataframe(clean_db2)
+
+                        with st.expander("Most User"):
+                            departmentdf = clean_db2['Department'].value_counts().to_frame()
+                            departmentdf = departmentdf.reset_index()
+
+                            st.subheader("Most User of the Recommendation System")
+                            p1=px.pie(departmentdf,names ='index', values='Department')
+                            st.plotly_chart(p1)
 
                     else:
                         st.warning("For Admins only")
@@ -127,7 +170,7 @@ elif choice == "Sign up":
     new_user =st.text_input("Username")
     new_pass =st.text_input("Password",type= 'password')
 
-    department = {"ABM", "STEM", "HUMSS", "TVL","GAS"}
+    department = {"ABM", "STEM", "HUMSS", "TVL","GAS","N/A"}
 
     department = st.selectbox("Select your SHS Strand", department)
 
@@ -161,7 +204,13 @@ elif choice == "Sign up":
         course = st.write("N/A")
 
     if st.button('Sign up'):
-        create_usertable()
-        add_userdata(new_user,new_pass,department,course)
-        st.success("You have successfully create a valid account")
-        st.info("Go to Login Menu to Log in")
+        if len(new_pass) < 6:
+            st.warning("The Password must be at least minimum of 6 characters")
+        if new_user == '':
+            st.warning("The Username Field is Empty")
+        else:
+            create_usertable()
+            add_userdata(new_user,new_pass,department,course)
+            st.success("Password verified")
+            st.success("You have successfully create a valid account")
+            st.info("Go to Login Menu to Log in")

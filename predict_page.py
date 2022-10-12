@@ -11,45 +11,43 @@ def show_predict():
     st.caption("By: Shuhaily Casan and Nicky Palero")
 
     #Select courses
-    department = {"SOECS","SBMA","SEAS","SHOM"}
-    department =st.selectbox("Select your department", department)
-    if department == "SOECS":
-        st.write("School of Engineering and Computer Studies(SOECS)")
-        course ={"Bachelor of Science in Information Technology",
-                       "Bachelor of Science in Computer Science",
-                       "Bachelor of Science in Civil Engineering",
-                        "Bachelor of Science in Electrical Engineering",
-                       "Bachelor of Science in Library and Information Science"}
-        course = st.selectbox("SOECS COURSES", course)
-
-    elif department == "SBMA":
-        st.write("School of Business, Management, and Accountancy(SBMA)")
-        course = {"Bachelor of Science in Accountancy",
-                       "bachelor of Science in Management Accounting",
-                       "Bachelor of Science in internal Auditing",
-                       "Bachelor of Science in Business Administration"}
-        course = st.selectbox("SBMA COURSES", course)
-
-    elif department == "SEAS":
-        st.write("School of Education, Arts and Science(SEAS)")
-        course = {"Bachelor of Science in Psychology",
-                       "Bachelor of Physical Education",
-                       "Bachelor of Special Needs Education",
-                       "Bachelor in Human Needs",
-                       "Bachelor of Elementary Education",
-                       "Bachelor of Secondary Education"}
-        course = st.selectbox("SBMA COURSES", course)
-
-    elif department == "SHOM":
-        st.write("School of Hospitality Management(SHOM) and School of Nursing(SON)")
-        course = {"Bachelor of Science in Hospital Management",
-                       "Bachelor of Science in Nursing"}
-        course = st.selectbox("SBMA COURSES", course)
+    # department = {"SOECS","SBMA","SEAS","SHOM"}
+    # department =st.selectbox("Select your department", department)
+    # if department == "SOECS":
+    #     st.write("School of Engineering and Computer Studies(SOECS)")
+    #     course ={"Bachelor of Science in Information Technology",
+    #                    "Bachelor of Science in Computer Science",
+    #                    "Bachelor of Science in Civil Engineering",
+    #                     "Bachelor of Science in Electrical Engineering",
+    #                    "Bachelor of Science in Library and Information Science"}
+    #     course = st.selectbox("SOECS COURSES", course)
+    #
+    # elif department == "SBMA":
+    #     st.write("School of Business, Management, and Accountancy(SBMA)")
+    #     course = {"Bachelor of Science in Accountancy",
+    #                    "bachelor of Science in Management Accounting",
+    #                    "Bachelor of Science in internal Auditing",
+    #                    "Bachelor of Science in Business Administration"}
+    #     course = st.selectbox("SBMA COURSES", course)
+    #
+    # elif department == "SEAS":
+    #     st.write("School of Education, Arts and Science(SEAS)")
+    #     course = {"Bachelor of Science in Psychology",
+    #                    "Bachelor of Physical Education",
+    #                    "Bachelor of Special Needs Education",
+    #                    "Bachelor in Human Needs",
+    #                    "Bachelor of Elementary Education",
+    #                    "Bachelor of Secondary Education"}
+    #     course = st.selectbox("SBMA COURSES", course)
+    #
+    # elif department == "SHOM":
+    #     st.write("School of Hospitality Management(SHOM) and School of Nursing(SON)")
+    #     course = {"Bachelor of Science in Hospital Management",
+    #                    "Bachelor of Science in Nursing"}
+    #     course = st.selectbox("SBMA COURSES", course)
 
 
     #Course Assesment Rating Scale
-    st.write("")
-    st.write("")
     st.markdown("""### **Course Assessment**""")
     st.write("**Please rate how interested are you in in this 17 courses by reading the Assessments**")
     image = Image.open('likertScale.PNG')
@@ -401,7 +399,7 @@ def show_predict():
 
         df = pd.read_csv("book1.csv")
 
-        corrMatrix = df.corr(method='pearson')
+        corrMatrix = df.corr(method='spearman')
         corrMatrix.head(17)
 
 
@@ -441,7 +439,8 @@ def show_predict():
 
         with st.spinner('Wait for it...'):
             time.sleep(3)
+
         st.success('Done!')
         st.header("Course Assessment Results")
-        st.write("**The three DWCL courses that are most suitable for you**")
+        st.subheader("**The three DWCL courses that are most suitable for you**")
         st.write(similar.sum().sort_values(ascending=False).head(3))

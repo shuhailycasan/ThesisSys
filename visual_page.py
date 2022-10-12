@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+@st.cache
 def show_visual():
     st.title("Visualization of the Study")
     #barchart
@@ -34,7 +35,7 @@ def show_visual():
     #Pie Chart
     st.subheader("Reason why they are not confident in their chosen degree")
     labels = 'Financial Problem', 'The Course is hard', 'they are not sure'
-    sizes = [50, 30, 20]
+    sizes = [49.2, 31.5, 20.3]
     explode = (0, 0.1, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
     fig1, ax1 = plt.subplots()
@@ -95,21 +96,13 @@ def show_visual():
     ax1.axis('equal')
 
     st.pyplot(fig1)
-<<<<<<< HEAD
     #--------------SENIOR HIGH STUDENTS DATA VISUALIZATION-----------
-        ##HERE
+    st.header("College Sophomore")
+    st.subheader("Numbers of Students who participated in our Studies")
 
     #------CORRELATION MATRIX OF SENIOR HIGH AND COLLEGE STUDENTS--------
-    st.subheader("The Correlation Matrix of Senior High and College Students")
-    con = pd.read_csv('cor3.csv')
-    fig, ax = plt.subplots()
-    sns.heatmap(con.corr(method='pearson'),annot=True, ax=ax)
-    st.write(fig)
-=======
-    ##hello world
->>>>>>> origin/master
-
-
-
-
-
+    #st.subheader("The Correlation Matrix of Senior High and College Students")
+    # con = pd.read_csv('cor3.csv')
+    # fig, ax = plt.subplots()
+    # sns.heatmap(con.corr(method='pearson'),annot=True, ax=ax)
+    # st.write(fig)
