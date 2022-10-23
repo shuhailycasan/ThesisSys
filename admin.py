@@ -101,139 +101,142 @@ if choice == "Home":
     st.image(new_image)
 
 elif choice == "Login":
-    # username = st.sidebar.text_input("Username ")
-    # password = st.sidebar.text_input("Password ",type='password')
-    users = login_admin1()
-    username = [user[1] for user in users]
-    password = [user[2] for user in users]
+    # users = login_admin1()
+    # username = [user[1] for user in users]
+    # password = [user[2] for user in users]
+    #
+    # credentials = {"usernames": {}}
+    #
+    # for un, pw in zip(username, password):
+    #     user_dict = {"passwords": pw}
+    #     credentials["usernames"].update({un: user_dict})
+    #
+    # authenticator = stauth.Authenticate(credentials, "app", "auth", cookie_expiry_days=30)
+    #
+    # usernames, authentication_status, passwords = authenticator.login("Login", "sidebar")
+    username = st.sidebar.text_input("Username ")
+    password = st.sidebar.text_input("Password ", type='password')
+    load = st.sidebar.button('Login')
+    if "load_state" not in st.session_state:
+        st.session_state.load_state = False
 
-    credentials = {"usernames": {}}
+    if load or st.session_state.load_state:
+        st.session_state.load_state = True
+        create_admintable()
+        result = login_admin(username,password)
+        if result:
+            # authenticator.logout("Logout", "sidebar")
+            page = st.selectbox("Choose functions", ("Explore","Users"))
 
-    for un, pw in zip(username, password):
-        user_dict = {"passwords": pw}
-        credentials["usernames"].update({un: user_dict})
+            if page == "Explore":
+                show_visual()
 
-    authenticator = stauth.Authenticate(credentials, "app", "auth", cookie_expiry_days=30)
+            elif page == "Users":
 
-    usernames, authentication_status, passwords = authenticator.login("Login", "sidebar")
+                st.subheader("View All Users")
+                user_result = view_all_users()
+                clean_db = pd.DataFrame(user_result, columns=["Username", "Password", "Department", "Course"])
+                with st.expander("View All Data"):
+                    st.dataframe(clean_db)
 
-    # if st.sidebar.checkbox("Log in"):
-    #     create_admintable()
-    #     result = login_admin(username,password)
+                st.subheader("View All Admins")
+                user_result1 = view_all_admins()
+                clean_db3 = pd.DataFrame(user_result1, columns=["Username", "Password", "Position"])
+                with st.expander("View All Data"):
+                    st.dataframe(clean_db3)
 
-    if authentication_status == False:
-        authenticator.logout("Logout", "sidebar")
-        page = st.selectbox("Choose functions", ("Explore","Users"))
+                menu = ["Add","Edit"]
+                choice = st.selectbox("Add and Edit users", menu)
 
-        if page == "Explore":
-            show_visual()
+                if choice == "Add":
+                    menu1 = ["Students", "Admins"]
+                    choice1 = st.selectbox("Students or Admins", menu1)
+                    if choice1 == "Students":
+                        add_user = st.text_input("Username")
+                        add_pass = st.text_input("Password", type='password')
+                        add_department = {"ABM", "STEM", "HUMSS", "TVL", "GAS","N/A"}
+                        add_department = st.selectbox("Select your SHS Strand", add_department)
 
-        elif page == "Users":
+                        if add_department == "ABM":
+                            st.write("Accountancy, Business and Management")
+                            add_course = {"ABM"}
+                            add_course = st.selectbox("SHS STRAND", add_course)
 
-            st.subheader("View All Users")
-            user_result = view_all_users()
-            clean_db = pd.DataFrame(user_result, columns=["Username", "Password", "Department", "Course"])
-            with st.expander("View All Data"):
-                st.dataframe(clean_db)
+                        elif add_department == "GAS":
+                            st.write("General Academic Strand")
+                            add_course = {"GAS"}
+                            add_course = st.selectbox("SHS STRAND", add_course)
 
-            st.subheader("View All Admins")
-            user_result1 = view_all_admins()
-            clean_db3 = pd.DataFrame(user_result1, columns=["Username", "Password", "Position"])
-            with st.expander("View All Data"):
-                st.dataframe(clean_db3)
+                        elif add_department == "HUMSS":
+                            st.write("Humanities and Social Sciences")
+                            add_course = {"HUMSS"}
+                            add_course = st.selectbox("SHS STRAND", add_course)
 
-            menu = ["Add","Edit"]
-            choice = st.selectbox("Add and Edit users", menu)
+                        elif add_department == "STEM":
+                            st.write("Science, Technology, Engineering")
+                            add_course = {"STEM for Mathematics and Engineering", "STEM for Health and Sciences"}
+                            add_course = st.selectbox("SHS STRAND", add_course)
+                        elif add_department == "TVL":
+                            st.write("Technical - Vocational - Livelihood Track")
+                            add_course = {"Cookery",
+                                      "Bread and Pastry Production (NCII)",
+                                      "Food and Beverage Services (NCII)",
+                                      "Computer Systems Servicing"}
+                            add_course = st.selectbox("SHS STRAND", add_course)
+                        else:
+                            add_course = st.write("N/A")
 
-            if choice == "Add":
-                menu1 = ["Students", "Admins"]
-                choice1 = st.selectbox("Students or Admins", menu1)
-                if choice1 == "Students":
-                    add_user = st.text_input("Username")
-                    add_pass = st.text_input("Password", type='password')
-                    add_department = {"ABM", "STEM", "HUMSS", "TVL", "GAS","N/A"}
-                    add_department = st.selectbox("Select your SHS Strand", add_department)
+                        if st.button("Add User"):
+                            create_usertable()
+                            add_userdata(add_user, add_pass, add_department, add_course)
+                            st.success("You have successfully add user")
 
-                    if add_department == "ABM":
-                        st.write("Accountancy, Business and Management")
-                        add_course = {"ABM"}
-                        add_course = st.selectbox("SHS STRAND", add_course)
+                    if choice1 == "Admins":
+                        add_user = st.text_input("Username")
+                        add_pass = st.text_input("Password", type='password')
+                        add_position = st.text_input("Position")
+                        if st.button("Add User"):
+                            create_admintable()
+                            add_admindata(add_user, add_pass, add_position)
+                            st.success("You have successfully add user")
 
-                    elif add_department == "GAS":
-                        st.write("General Academic Strand")
-                        add_course = {"GAS"}
-                        add_course = st.selectbox("SHS STRAND", add_course)
+                elif choice == "Edit":
+                    list_of_name = [i[0] for i in view_unique_username()]
+                    selected_name = st.selectbox("User to Edit",list_of_name)
+                    selected_result = get_username(selected_name)
+                    st.write(selected_result)
 
-                    elif add_department == "HUMSS":
-                        st.write("Humanities and Social Sciences")
-                        add_course = {"HUMSS"}
-                        add_course = st.selectbox("SHS STRAND", add_course)
+                    if selected_result:
+                        username = selected_result[0][0]
+                        password = selected_result[0][1]
+                        department = selected_result[0][2]
+                        course = selected_result[0][3]
 
-                    elif add_department == "STEM":
-                        st.write("Science, Technology, Engineering")
-                        add_course = {"STEM for Mathematics and Engineering", "STEM for Health and Sciences"}
-                        add_course = st.selectbox("SHS STRAND", add_course)
-                    elif add_department == "TVL":
-                        st.write("Technical - Vocational - Livelihood Track")
-                        add_course = {"Cookery",
-                                  "Bread and Pastry Production (NCII)",
-                                  "Food and Beverage Services (NCII)",
-                                  "Computer Systems Servicing"}
-                        add_course = st.selectbox("SHS STRAND", add_course)
-                    else:
-                        add_course = st.write("N/A")
+                        update_user = st.text_input("Username")
+                        update_pass = st.text_input("Password", type='password')
+                        update_department = st.text_input("Department")
+                        update_course = st.text_input("Course")
 
-                    if st.button("Add User"):
-                        create_usertable()
-                        add_userdata(add_user, add_pass, add_department, add_course)
-                        st.success("You have successfully add user")
+                        if st.button("Update User"):
+                            edit_username_data(username, password, department, course, update_user, update_pass,update_department, update_course)
+                            st.success("You have successfully Updated:: {} TO ::{}".format(username,update_user))
 
-                if choice1 == "Admins":
-                    add_user = st.text_input("Username")
-                    add_pass = st.text_input("Password", type='password')
-                    add_position = st.text_input("Position")
-                    if st.button("Add User"):
-                        create_admintable()
-                        add_admindata(add_user, add_pass, add_position)
-                        st.success("You have successfully add user")
+                updated_result = view_all_users()
 
-            elif choice == "Edit":
-                list_of_name = [i[0] for i in view_unique_username()]
-                selected_name = st.selectbox("User to Edit",list_of_name)
-                selected_result = get_username(selected_name)
-                st.write(selected_result)
+                clean_db2 = pd.DataFrame(updated_result, columns=["Username", "Password", "Department", "Course"])
+                with st.expander("View Updated Data"):
+                    st.subheader("UPDATED DATA")
+                    st.dataframe(clean_db2)
 
-                if selected_result:
-                    username = selected_result[0][0]
-                    password = selected_result[0][1]
-                    department = selected_result[0][2]
-                    course = selected_result[0][3]
+                with st.expander("Most User"):
+                    departmentdf = clean_db2['Department'].value_counts().to_frame()
+                    departmentdf = departmentdf.reset_index()
 
-                    update_user = st.text_input("Username")
-                    update_pass = st.text_input("Password", type='password')
-                    update_department = st.text_input("Department")
-                    update_course = st.text_input("Course")
-
-                    if st.button("Update User"):
-                        edit_username_data(username, password, department, course, update_user, update_pass,update_department, update_course)
-                        st.success("You have successfully Updated:: {} TO ::{}".format(username,update_user))
-
-            updated_result = view_all_users()
-
-            clean_db2 = pd.DataFrame(updated_result, columns=["Username", "Password", "Department", "Course"])
-            with st.expander("View Updated Data"):
-                st.subheader("UPDATED DATA")
-                st.dataframe(clean_db2)
-
-            with st.expander("Most User"):
-                departmentdf = clean_db2['Department'].value_counts().to_frame()
-                departmentdf = departmentdf.reset_index()
-
-                st.subheader("Most User of the Recommendation System")
-                p1=px.pie(departmentdf,names ='index', values='Department')
-                st.plotly_chart(p1)
-    else:
-        st.warning("Incorrect Password or Username")
+                    st.subheader("Most User of the Recommendation System")
+                    p1=px.pie(departmentdf,names ='index', values='Department')
+                    st.plotly_chart(p1)
+        else:
+            st.warning("Incorrect Password or Username")
 
 elif choice == "Signup":
     st.subheader("Create New Account")

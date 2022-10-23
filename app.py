@@ -82,33 +82,39 @@ elif choice == "Login":
     #     result = login_user(username, password)
     # if submit and result:
     #     placeholder.empty()
-    users = login_user1()
-    username =[user[1] for user in users]
-    password = [user[2] for user in users]
+    # users = login_user1()
+    # username =[user[1] for user in users]
+    # password = [user[2] for user in users]
+    #
+    # credentials = {"usernames": {}}
+    #
+    # for un,pw in zip(username,password):
+    #     user_dict = {"passwords": pw}
+    #     credentials["usernames"].update({un: user_dict})
+    #
+    # authenticator = stauth.Authenticate(credentials, "app", "auth", cookie_expiry_days =30)
+    #
+    # usernames, authentication_status, passwords = authenticator.login("Login", "sidebar")
+    username = st.sidebar.text_input("Username ")
+    password = st.sidebar.text_input("Password ", type='password')
+    load = st.sidebar.button('Login')
+    if "load_state" not in st.session_state:
+        st.session_state.load_state = False
 
-    credentials = {"usernames": {}}
+    if load or st.session_state.load_state:
+        st.session_state.load_state = True
+        create_usertable()
+        result = login_user(username, password)
+        if result:
+            page = st.selectbox("Choose functions", ("Recommend", "Explore"))
+            if page == "Recommend":
+                show_predict()
 
-    for un,pw in zip(username,password):
-        user_dict = {"passwords": pw}
-        credentials["usernames"].update({un: user_dict})
+            elif page == "Explore":
+                show_visual()
+        else:
+            st.error("Incorrect Password or Username")
 
-    authenticator = stauth.Authenticate(credentials, "app", "auth", cookie_expiry_days =30)
-
-    usernames, authentication_status, passwords = authenticator.login("Login", "sidebar")
-
-    if authentication_status == False:
-        authenticator.logout("Logout","sidebar")
-
-        page = st.selectbox("Choose functions", ("Recommend", "Explore"))
-
-        if page == "Recommend":
-            show_predict()
-
-        elif page == "Explore":
-            show_visual()
-
-    else:
-        st.error("Incorrect Password or Username")
 
 elif choice == "Signup":
     st.subheader("Create New Account")
