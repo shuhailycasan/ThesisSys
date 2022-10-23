@@ -55,7 +55,7 @@ def show_predict():
     st.image(new_image)
 
     st.write("")
-    q1 = st.slider("1. Bachelor of Science in Civil Engineer", 0, 5, 2)
+    q1 = st.slider("1. Bachelor of Science in Civil Engineer", 1, 5, 3)
     st.markdown("""
         A **Bachelor of Science in Civil Engineering (BSCE)** is intended to provide graduates with the skills and knowledge needed to design, build, and operate engineered systems such as roads, foundations, buildings, bridges, dams, airports, and water supply and wastewater treatment systems.                    
         > If you have any skills like this then this is for you:
@@ -72,7 +72,7 @@ def show_predict():
         - Building COntrol Surveyor
         and so much more :tada: """)
 
-    q2 = st.slider("2. Bachelor of Science in Electrical Engineering", 0, 5, 2)
+    q2 = st.slider("2. Bachelor of Science in Electrical Engineering", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Electrical Engineering (BSEE)** is a five-year degree program that focuses on conceptualizing, developing, and designing a safe, economical, and ethical utilization of electrical energy. The program also trains students to effectively develop and test real-life applications of electrical circuitry, digital systems, electrical equipment, and machinery control.           
         > If you have any skills like this then this is for you:
@@ -90,7 +90,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q3 = st.slider("3. Bachelor of Science in Information Technology", 0, 5, 2)
+    q3 = st.slider("3. Bachelor of Science in Information Technology", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Information Technology (BSIT)** program is a four-year degree program which focuses on the study of computer utilization and computer software to plan, install, customize, operate, manage, administer and maintain information technology infrastructure.                
         > If you have any skills like this then this is for you:
@@ -108,7 +108,7 @@ def show_predict():
         and so much more :tada:
                 """)
 
-    q4 = st.slider("4. Bachelor of Science in Computer Science", 0, 5, 2)
+    q4 = st.slider("4. Bachelor of Science in Computer Science",1, 5, 3)
     st.markdown("""
         The **Bachelor of Computer Science or Bachelor of Science in Computer Science (BSCS)** is a type of bachelor's degree awarded after collegiate study in computer science. In general, computer science degree programs emphasize the mathematical and theoretical foundations of computing.
         > If you have any skills like this then this is for you,
@@ -123,7 +123,7 @@ def show_predict():
         - Data Scientist
             """)
 
-    q5 = st.slider("5. Bachelor of Library and Information Science", 0, 5, 2)
+    q5 = st.slider("5. Bachelor of Library and Information Science", 1, 5, 3)
     st.markdown("""
        The **Bachelor of Library and Information Science (BLIS)** is a four-year program that prepares students in the development, deployment, and management of information resources in print, non-print, electronic, and digital formats.            
        > If you have any skills like this then this is for you:
@@ -141,7 +141,7 @@ def show_predict():
        and so much more :tada:
         """)
 
-    q6 = st.slider("6. Bachelor of Science in Accountancy", 0, 5, 2)
+    q6 = st.slider("6. Bachelor of Science in Accountancy", 1, 5, 3)
     st.markdown("""
         A **Bachelor of Science (BS) in Accountancy** is four-year degree that requires more courses related to the accounting major to prepare students for entry-level positions in corporate, nonprofit, or government accounting.            
         > If you have any skills like this then this is for you:
@@ -161,7 +161,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q7 = st.slider("7. Bachelor of Science in Management Accounting", 0, 5, 2)
+    q7 = st.slider("7. Bachelor of Science in Management Accounting", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Management Accounting** is a four-year degree program that provides students with knowledge and skills in management. It includes discussions on the systems, procedures, and policies relevant to company management and decisions. The program also aims to produce globally competitive students who are capable of applying both accounting and management techniques.            
         > If you have any skills like this then this is for you:
@@ -181,7 +181,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q8 = st.slider("8. Bachelor of Science in Internal Auditing", 0, 5, 2)
+    q8 = st.slider("8. Bachelor of Science in Internal Auditing", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Internal Auditing (BSIA)** is a four year degree program that provides general accounting education to students wanting to pursue a professional career in Internal Auditing. BSIA hones professionals who can enhance and protect organizational value by providing stake holders with risk-based, objective and reliable assurance, advise and insight                
         > If you have any skills like this then this is for you:
@@ -201,7 +201,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q9 = st.slider("9. Bachelor of Science in Business Administration", 0, 5, 2)
+    q9 = st.slider("9. Bachelor of Science in Business Administration", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Business Administration** is a four-year program that focuses on managing businesses and their overall operations. The program involves critical decision-making skills in order to successfully strategize business operations.            
         > If you have any skills like this then this is for you:
@@ -220,7 +220,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q10 = st.slider("10. Bachelor of Science in Psychology", 0, 5, 2)
+    q10 = st.slider("10. Bachelor of Science in Psychology", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Psychology (BS Psych)** is a four-year program designed to help you observe human behavior through the scientific method, allowing you to gain access to the human psyche and fathom its depths. 
         > If you have any skills like this then this is for you:
@@ -239,7 +239,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q11 = st.slider("11. Bachelor of Physical Education", 0, 5, 2)
+    q11 = st.slider("11. Bachelor of Physical Education", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Physical Education** is a four-year degree program in the Philippines that will train you in developing and maintaining the optimal physical fitness and functionality individuals                
         > If you have any skills like this then this is for you:
@@ -260,7 +260,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q12 = st.slider("12. Bachelor of Science in Elementary Education", 0, 5, 2)
+    q12 = st.slider("12. Bachelor of Science in Elementary Education", 1, 5, 3)
     st.markdown("""
        The **Bachelor of Elementary Education (BEED)** is a four-year undergraduate degree program designed to prepare students to become elementary school teachers. The BEED degree program aims to develop highly motivated and competent teachers specializing in the content and pedagogy for elementary education.                
        > If you have any skills like this then this is for you:
@@ -281,7 +281,7 @@ def show_predict():
        and so much more :tada:
         """)
 
-    q13 = st.slider("13. Bachelor of Secondary Education", 0, 5, 2)
+    q13 = st.slider("13. Bachelor of Secondary Education", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Secondary Education (BSED)** is a four year degree program designed to prepare students for becoming high school teachers. The program combines both theory and practice in order to teach students the necessary knowledge and skills a high school teacher needs. The program aims to produce competent teachers who provide a conducive learning experience to their students.                 
         > If you have any skills like this then this is for you:
@@ -301,7 +301,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q14 = st.slider("14. Bachelor of Special Needs Education", 0, 5, 2)
+    q14 = st.slider("14. Bachelor of Special Needs Education", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Special Needs Education (BSNEd)** is a four-year undergraduate program of the 2018 curriculum which aims to prepare aspiring teachers in the field of special needs education. Specifically, the program aims to develop highly competent special education (SPED) teacher-researchers who specialize in providing and managing instruction to students with additional needs in an inclusive and / or segregated setting.            
         > If you have any skills like this then this is for you:
@@ -319,7 +319,7 @@ def show_predict():
         and so much more :tada:
          """)
 
-    q15 = st.slider("15. Bachelor of Human Services", 0, 5, 2)
+    q15 = st.slider("15. Bachelor of Human Services", 1, 5, 3)
     st.markdown("""
        The **Bachelor of Science degree in Human Services** is a rigorous program of study that helps students acquire the awareness, knowledge and skills necessary to promote mental well-being and to advocate for the populations they serve.          
        > If you have any skills like this then this is for you:
@@ -340,7 +340,7 @@ def show_predict():
        and so much more :tada:
         """)
 
-    q16 = st.slider("16. Bachelor of Science in Hospital Management", 0, 5, 2)
+    q16 = st.slider("16. Bachelor of Science in Hospital Management", 1, 5, 3)
     st.markdown("""
        The **Bachelor of Science in Hospitality Management (BSHM)** is a degree program that delivers education to people who are interested to build a career in the leisure industry involving the planning, development, implementation and control of culinary and accommodation/billeting operations.                        
        > If you have any skills like this then this is for you:
@@ -358,7 +358,7 @@ def show_predict():
        and so much more :tada:
        """)
 
-    q17 = st.slider("17. Bachelor of Science in Nursing", 0, 5, 2)
+    q17 = st.slider("17. Bachelor of Science in Nursing", 1, 5, 3)
     st.markdown("""
         The **Bachelor of Science in Nursing (BSN)** is a four-year degree program that teaches students the necessary skills and knowledge for health care. It revolves around four main components; health promotion, disease prevention, risk reduction, and health restoration. The program aims to develop nursing students who are capable of providing holistic care to individuals of different ages, gender, and health statuses. 
         > If you have any skills like this then this is for you:
@@ -415,13 +415,50 @@ def show_predict():
 
         for question, rating in ratings:
              similar=similar.append(get_similar(question, rating), ignore_index=True)
-
              similar.head(10)
 
         with st.spinner('Wait for it...'):
             time.sleep(3)
-
+        st.balloons()
         st.success('Done!')
         st.header("Course Assessment Results")
-        st.subheader("**The three DWCL courses that are most suitable for you**")
-        st.write(similar.sum().sort_values(ascending=False).head(3))
+        # CA = """
+        #     <style>
+        #     .title{
+        #     display:flex;
+        #     justify-content: space-between;
+        #     }
+        #     h6{
+        #     padding:0 0 0 0;
+        #     font-size:25px;
+        #     }
+        #     </style>
+        #
+        #       <div class="title">
+        #          <h6>Courses</h6>
+        #          <h6>&ensp;Average</h6>
+        #     </div>
+        #     """
+        CA1 = """
+            <style>
+            h6{
+            padding:0 0 0 0;
+            font-size:25px;
+            }
+            </style>
+
+              <div class="title">
+                 <h6>Courses&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Average</h6>
+            </div>
+            """
+
+        remove = """
+            <style>
+            thead tr th{display: None}
+            thead tr th .col heading{display: None}
+            </style>
+            """
+
+        st.markdown(CA1, unsafe_allow_html=True)
+        st.markdown(remove, unsafe_allow_html=True)
+        st.table(similar.sum().sort_values(ascending=False).head(17))

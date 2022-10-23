@@ -2,9 +2,10 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 import plotly.express as px
+from streamlit_option_menu import option_menu
 from predict_page import show_predict
 from visual_page import show_visual
-
+import streamlit_authenticator as stauth
 
 ## DATABASE CONNECTION
 import sqlite3
@@ -22,6 +23,10 @@ def login_user(username,password):
     c.execute('SELECT * FROM userstable WHERE username = ? AND password = ?', (username,password))
     data = c.fetchall()
     return data
+def login_user1():
+    c.execute('SELECT * FROM userstable WHERE username AND password')
+    data = c.fetchall()
+    return data
 
 def view_all_users():
     c.execute('SELECT * FROM userstable')
@@ -30,6 +35,10 @@ def view_all_users():
 
 def view_unique_username():
     c.execute('SELECT DISTINCT username FROM userstable')
+    data = c.fetchall()
+    return data
+def get_password(password):
+    c.execute('SELECT * FROM userstable WHERE password="{}"'.format(username))
     data = c.fetchall()
     return data
 
@@ -44,8 +53,14 @@ def edit_username_data(username,password,department,course,update_user,update_pa
     data = c.fetchall()
     return data
 
-menu=["Home","Login","Sign up"]
-choice =st.sidebar.selectbox("Menu", menu)
+with st.sidebar:
+    choice = option_menu(
+        menu_title = "Menu",
+        options= ["Home","Login","Signup"],
+        icons =["house","box-arrow-in-right","person-plus-fill"],
+        default_index = 0,
+    )
+
 if choice == "Home":
     st.title("Welcome to our Recommendation System")
     st.write("Please signup first")
@@ -55,117 +70,47 @@ if choice == "Home":
     st.image(new_image)
 
 elif choice == "Login":
-        username = st.sidebar.text_input("Username ")
-        password = st.sidebar.text_input("Password ",type='password')
+    # placeholder = st.empty()
+    #
+    # with st.form("my_form"):
+    #     st.markdown("#### Enter your credentials")
+    #     username = st.text_input("Email")
+    #     password = st.text_input("Password", type="password")
+    #     submit = st.form_submit_button("Login")
+    #
+    #     create_usertable()
+    #     result = login_user(username, password)
+    # if submit and result:
+    #     placeholder.empty()
+    users = login_user1()
+    username =[user[1] for user in users]
+    password = [user[2] for user in users]
 
-        if st.sidebar.checkbox("Log in"):
-            create_usertable()
-            result = login_user(username,password)
+    credentials = {"usernames": {}}
 
-            if result:
-                st.success("Logged in as {}".format(username))
-                page = st.selectbox("Choose functions", ("Recommend", "Explore","Users"))
+    for un,pw in zip(username,password):
+        user_dict = {"passwords": pw}
+        credentials["usernames"].update({un: user_dict})
 
-                if page == "Recommend":
-                    show_predict()
+    authenticator = stauth.Authenticate(credentials, "app", "auth", cookie_expiry_days =30)
 
-                elif page == "Explore":
-                    show_visual()
+    usernames, authentication_status, passwords = authenticator.login("Login", "sidebar")
 
-                elif page == "Users":
+    if authentication_status == False:
+        authenticator.logout("Logout","sidebar")
 
-                    if username == "admin" and password == "1234567":
-                        st.subheader("View All User")
-                        user_result = view_all_users()
-                        clean_db = pd.DataFrame(user_result, columns=["Username", "Password", "Department", "Course"])
-                        with st.expander("View All Data"):
-                            st.dataframe(clean_db)
+        page = st.selectbox("Choose functions", ("Recommend", "Explore"))
 
-                        menu = ["Add","Edit"]
-                        choice = st.selectbox("Add and Edit users", menu)
+        if page == "Recommend":
+            show_predict()
 
-                        if choice == "Add":
-                            add_user = st.text_input("Username")
-                            add_pass = st.text_input("Password", type='password')
-                            add_department = {"ABM", "STEM", "HUMSS", "TVL", "GAS","N/A"}
-                            add_department = st.selectbox("Select your SHS Strand", add_department)
+        elif page == "Explore":
+            show_visual()
 
-                            if add_department == "ABM":
-                                st.write("Accountancy, Business and Management")
-                                add_course = {"ABM"}
-                                add_course = st.selectbox("SHS STRAND", add_course)
+    else:
+        st.error("Incorrect Password or Username")
 
-                            elif add_department == "GAS":
-                                st.write("General Academic Strand")
-                                add_course = {"GAS"}
-                                add_course = st.selectbox("SHS STRAND", add_course)
-
-                            elif add_department == "HUMSS":
-                                st.write("Humanities and Social Sciences")
-                                add_course = {"HUMSS"}
-                                add_course = st.selectbox("SHS STRAND", add_course)
-
-                            elif add_department == "STEM":
-                                st.write("Science, Technology, Engineering")
-                                add_course = {"STEM for Mathematics and Engineering", "STEM for Health and Sciences"}
-                                add_course = st.selectbox("SHS STRAND", add_course)
-                            elif add_department == "TVL":
-                                st.write("Technical - Vocational - Livelihood Track")
-                                add_course = {"Cookery",
-                                          "Bread and Pastry Production (NCII)",
-                                          "Food and Beverage Services (NCII)",
-                                          "Computer Systems Servicing"}
-                                add_course = st.selectbox("SHS STRAND", add_course)
-                            else:
-                                add_course = st.write("N/A")
-
-                            if st.button("Add User"):
-                                create_usertable()
-                                add_userdata(add_user, add_pass, add_department, add_course)
-                                st.success("You have successfully add user")
-
-                        elif choice == "Edit":
-                            list_of_name = [i[0] for i in view_unique_username()]
-                            selected_name = st.selectbox("User to Edit",list_of_name)
-                            selected_result = get_username(selected_name)
-                            st.write(selected_result)
-
-                            if selected_result:
-                                username = selected_result[0][0]
-                                password = selected_result[0][1]
-                                department = selected_result[0][2]
-                                course = selected_result[0][3]
-
-                                update_user = st.text_input("Username")
-                                update_pass = st.text_input("Password", type='password')
-                                update_department = st.text_input("Department")
-                                update_course = st.text_input("Course")
-
-                                if st.button("Update User"):
-                                    edit_username_data(username, password, department, course, update_user, update_pass,update_department, update_course)
-                                    st.success("You have successfully Updated:: {} TO ::{}".format(username,update_user))
-
-                        updated_result = view_all_users()
-
-                        clean_db2 = pd.DataFrame(updated_result, columns=["Username", "Password", "Department", "Course"])
-                        with st.expander("View Updated Data"):
-                            st.subheader("UPDATED DATA")
-                            st.dataframe(clean_db2)
-
-                        with st.expander("Most User"):
-                            departmentdf = clean_db2['Department'].value_counts().to_frame()
-                            departmentdf = departmentdf.reset_index()
-
-                            st.subheader("Most User of the Recommendation System")
-                            p1=px.pie(departmentdf,names ='index', values='Department')
-                            st.plotly_chart(p1)
-
-                    else:
-                        st.warning("For Admins only")
-            else:
-                st.warning("Incorrect Password or Username")
-
-elif choice == "Sign up":
+elif choice == "Signup":
     st.subheader("Create New Account")
     new_user =st.text_input("Username")
     new_pass =st.text_input("Password",type= 'password')
@@ -211,6 +156,7 @@ elif choice == "Sign up":
         else:
             create_usertable()
             add_userdata(new_user,new_pass,department,course)
+            st.balloons()
             st.success("Password verified")
             st.success("You have successfully create a valid account")
             st.info("Go to Login Menu to Log in")
