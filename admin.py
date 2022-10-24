@@ -90,7 +90,6 @@ with st.sidebar:
         menu_title = "Menu",
         options= ["Home","Login","Signup"],
         icons =["house","box-arrow-in-right","person-plus-fill"],
-
     )
 if choice == "Home":
     st.title("Welcome to our Recommendation System")

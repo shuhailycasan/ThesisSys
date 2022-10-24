@@ -59,6 +59,7 @@ with st.sidebar:
         options= ["Home","Login","Signup"],
         icons =["house","box-arrow-in-right","person-plus-fill"],
         default_index = 0,
+        key = "myform"
     )
 
 if choice == "Home":
